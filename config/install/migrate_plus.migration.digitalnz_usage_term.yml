@@ -1,0 +1,31 @@
+id: digitalnz_usage_term
+label: 'Migrate DigitalNZ Usage terms'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      term_id: 1
+      name: 'All rights reserved'
+    -
+      term_id: 2
+      name: Modify
+    -
+      term_id: 3
+      name: Share
+    -
+      term_id: 4
+      name: Unknown
+    -
+      term_id: 5
+      name: 'Use commercially'
+  ids:
+    term_id:
+      type: integer
+process:
+  name: name
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: digitalnz_usage
+migration_dependencies:
+  required: {  }
+  optional: {  }

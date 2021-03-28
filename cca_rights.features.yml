@@ -1,0 +1,4 @@
+excluded:
+  - block.block.views_block__my_groups_block_1
+  - block.block.views_block__my_groups_block_1_2
+required: true

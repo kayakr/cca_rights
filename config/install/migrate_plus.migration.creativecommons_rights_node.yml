@@ -1,0 +1,84 @@
+id: creativecommons_rights_node
+label: 'Migrate creativecommons.org statements'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      id: 'https://creativecommons.org/licenses/by/4.0'
+      prefLabel: 'Attribution'
+      identifier: 'CC BY'
+      versionInfo: '4.0'
+    -
+      id: 'https://creativecommons.org/licenses/by-sa/4.0'
+      prefLabel: 'Attribution-ShareAlike'
+      identifier: 'CC BY-SA'
+      description: "You are free to:\n
+                    Share — copy and redistribute the material in any medium or format\n
+                    Adapt — remix, transform, and build upon the material\n
+                    for any purpose, even commercially.\n
+                    This license is acceptable for Free Cultural Works. The licensor cannot revoke these freedoms as long as you follow the license terms."
+      versionInfo: '4.0'
+    -
+      id: 'https://creativecommons.org/licenses/by-nd/4.0'
+      prefLabel: 'Attribution-NoDerivs'
+      identifier: 'CC BY-ND'
+      versionInfo: '4.0'
+    -
+      id: 'https://creativecommons.org/licenses/by-nc/4.0'
+      prefLabel: 'Attribution-NonCommercial'
+      identifier: 'CC BY-NC'
+      versionInfo: '4.0'
+    -
+      id: 'https://creativecommons.org/licenses/by-nc-sa/4.0'
+      prefLabel: 'Attribution-NonCommercial-ShareAlike'
+      identifier: 'CC BY-NC-SA'
+      versionInfo: '4.0'
+    -
+      id: 'https://creativecommons.org/licenses/by-nc-nd/4.0'
+      prefLabel: 'Attribution-NonCommercial-NoDerivs'
+      identifier: 'CC BY-NC-ND'
+      versionInfo: '4.0'
+  ids:
+    id:
+      type: string
+process:
+  # We preserve the source values as close to original but compose useful labels
+  # for a Rights field select option.
+  _cc:
+    plugin: default_value
+    default_value: 'Creative Commons'
+  _space:
+    plugin: default_value
+    default_value: ' '
+  _parenthesis_left:
+    plugin: default_value
+    default_value: '('
+  _parenthesis_right:
+    plugin: default_value
+    default_value: ')'
+
+  title:
+    plugin: concat
+    source:
+      - '@_cc'
+      - '@_space'
+      - prefLabel
+      - '@_space'
+      - '@_parenthesis_left'
+      - identifier
+      - '@_parenthesis_right'
+      - '@_space'
+      - versionInfo
+  field_url: id
+  field_description: description
+  field_definition: definition
+  field_version: versionInfo
+  field_note: note
+  field_scope_note: scopeNote
+
+destination:
+  plugin: 'entity:node'
+  default_bundle: cca_rights
+migration_dependencies:
+  required: {  }
+  optional: {  }

@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_digitalnz_usage
+    - node.type.cca_rights
+    - taxonomy.vocabulary.digitalnz_usage
+id: node.cca_rights.field_digitalnz_usage
+field_name: field_digitalnz_usage
+entity_type: node
+bundle: cca_rights
+label: 'DigitalNZ Usage'
+description: "i.e. CC-BY-NC would have: Share and Modify.\r\nNo known copyright would have: Share, Modify and Use commercially.\r\nIf the status of content is not identified by the content provider the value Unknown is used."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      digitalnz_usage: digitalnz_usage
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,107 @@
+id: rightsstatements_rights_node
+label: 'Migrate rightsstatements.org statements'
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      id: 'http://rightsstatements.org/vocab/InC/1.0/'
+      prefLabel: 'In Copyright'
+      identifier: 'InC'
+      versionInfo: '1.0'
+    -
+      id: 'http://rightsstatements.org/vocab/InC-OW-EU/1.0/'
+      prefLabel: 'In copyright - EU orphan work'
+      identifier: 'InC-OW-EU'
+      versionInfo: '1.0'
+    -
+      id: 'http://rightsstatements.org/vocab/InC-EDU/1.0/'
+      prefLabel: 'In copyright - educational use permitted'
+      identifier: 'InC-EDU'
+      versionInfo: '1.0'
+    -
+      id: 'http://rightsstatements.org/vocab/InC-NC/1.0/'
+      prefLabel: 'In copyright - Non-commercial use permitted'
+      identifier: 'InC-NC'
+      versionInfo: '1.0'
+    -
+      id: 'http://rightsstatements.org/vocab/InC-RUU/1.0/'
+      prefLabel: 'In copyright - Rights-holder(s) unlocatable or unidentifiable'
+      identifier: 'InC-RUU'
+      versionInfo: '1.0'
+    -
+      id: 'http://rightsstatements.org/vocab/NoC-CR/1.0/'
+      prefLabel: 'No copyright - Contractual restrictions'
+      identifier: 'NoC-CR'
+      versionInfo: '1.0'
+    -
+      id: 'http://rightsstatements.org/vocab/NoC-NC/1.0/'
+      prefLabel: 'No copyright - Non-commercial use only'
+      identifier: 'NoC-NC'
+      versionInfo: '1.0'
+    -
+      id: 'http://rightsstatements.org/vocab/NoC-OKLR/1.0/'
+      prefLabel: 'No copyright - Other known legal restrictions'
+      identifier: 'NoC-OKLR'
+      versionInfo: '1.0'
+    -
+      id: 'http://rightsstatements.org/vocab/NoC-US/1.0/'
+      prefLabel: 'No copyright - United States'
+      identifier: 'NoC-US'
+      versionInfo: '1.0'
+    -
+      id: 'http://rightsstatements.org/vocab/CNE/1.0/'
+      prefLabel: 'Copyright not evaluated'
+      identifier: 'NoC-CNE'
+      versionInfo: '1.0'
+    -
+      id: 'http://rightsstatements.org/vocab/UND/1.0/'
+      prefLabel: 'Copyright undetermined'
+      identifier: 'UND'
+      versionInfo: '1.0'
+    -
+      id: 'http://rightsstatements.org/vocab/NKC/1.0/'
+      prefLabel: 'No known copyright'
+      identifier: 'NKC'
+      versionInfo: '1.0'
+      description: 'This Rights Statement indicates that the Item labeled with this Rights Statement is in copyright.'
+      definition: "This Item is protected by copyright and/or related rights.\n\n You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.\n\n For other uses you need to obtain permission from the rights-holder(s)."
+  ids:
+    id:
+      type: string
+
+process:
+  # We preserve the source values as close to original but compose useful labels
+  # for a Rights field select option.
+  _space:
+    plugin: default_value
+    default_value: ' '
+  _parenthesis_left:
+    plugin: default_value
+    default_value: '('
+  _parenthesis_right:
+    plugin: default_value
+    default_value: ')'
+
+  title:
+    plugin: concat
+    source:
+     - prefLabel
+     - '@_space'
+     - '@_parenthesis_left'
+     - identifier
+     - '@_parenthesis_right'
+     - '@_space'
+     - versionInfo
+  field_url: id
+  field_description: description
+  field_definition: definition
+  field_version: versionInfo
+  field_note: note
+  field_scope_note: scopeNote
+
+destination:
+  plugin: 'entity:node'
+  default_bundle: cca_rights
+migration_dependencies:
+  required: {  }
+  optional: {  }

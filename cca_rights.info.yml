@@ -1,0 +1,21 @@
+name: Rights
+description: 'Rights statements to guide usage of Repository Items.'
+type: module
+core: 8.x
+dependencies:
+  - block
+  - field
+  - field_permissions
+  - islandora_defaults
+  - language
+  - link
+  - menu_ui
+  - migrate_plus
+  - node
+  - path
+  - system
+  - taxonomy
+  - user
+  - views
+version: 8.x-1.0-alpha2
+core_incompatible: false

@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Rights
+type: cca_rights
+description: "Rights statements to guide usage of Repository Items."
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Feature to enable Creative Commons, Rights Statements as nodes.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
